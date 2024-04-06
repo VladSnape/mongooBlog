@@ -9,10 +9,8 @@ const createBlog = async( {title , content} : { title:string , content:string}) 
     try {
     await connectDB()
     const post = await Blog.create({ title , content})
-    console.log(post)
 
     } catch (error) {
-        console.log(error)
     }
     revalidatePath('/')
     redirect('/')
@@ -22,10 +20,8 @@ const getBlogs = async() => {
     try {
         await connectDB()
         const blogs = await Blog.find({})
-        console.log(blogs)
         return blogs
     } catch (error) {
-        console.log(error)
     }
 }
 
@@ -37,7 +33,6 @@ const deleteBlog = async(id:string) => {
 
         
     } catch (error) {
-        console.log(error)
     }
     revalidatePath('/')
     redirect('/')
@@ -48,11 +43,9 @@ const updateBlog = async(id:string, title:string, content:string) => {
         await connectDB()
         await Blog.findByIdAndUpdate(id, {title, content})
     } catch (error) {
-        console.log(error)
     }
 
     redirect('/'+id)
-    revalidatePath('/')
 }
 
 const getBlog = async(id:string) => {
@@ -61,7 +54,6 @@ const getBlog = async(id:string) => {
         const blog = await Blog.findById(id)
         return blog
     } catch (error) {
-        console.log(error)
     }
 }
 
