@@ -1,29 +1,24 @@
 import { Button } from '@/components/ui/button'
-import { deleteBlog, getBlog } from '@/lib/actions'
+import { getBlog } from '@/lib/actions'
 import React from 'react'
 import DeleteButtn from '../components/delete'
 import Link from 'next/link'
 
-
 interface BlogPostPageParams {
-  id: string
+  id: string;
 }
 
 interface BlogPostPageProps {
-_id:string
-title:string
-content:string
-params :BlogPostPageParams
+  params: BlogPostPageParams;
 }
 
 interface Blog {
-  _id: string
-  title: string
-  content: string
+  _id: string;
+  title: string;
+  content: string;
 }
 
-
-const BlogPostPage : React.FC<BlogPostPageProps> = async({ _id, title , content , params} ) => {
+const BlogPostPage: React.FC<BlogPostPageProps> = async({ params }) => {
 const blog : Blog = await getBlog(params.id)
 
   return (
